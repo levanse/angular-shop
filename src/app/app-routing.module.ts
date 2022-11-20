@@ -8,29 +8,29 @@ import { BasketComponent } from './components/basket/basket.component';
 const routes: Routes = [
   {
     path: '',
-    component: BaseComponent
+    component: BaseComponent,
   },
   {
     path: 'products',
-    component: ProductsComponent
+    component: ProductsComponent,
   },
   {
     path: 'product/:id',
-    component: ProductDetailsComponent
+    component: ProductDetailsComponent,
   },
   {
     path: 'basket',
-    component: BasketComponent
+    component: BasketComponent,
   },
   {
-    path: "**",
-    redirectTo: "",
-    component: BaseComponent
-  }
+    path: '**',
+    redirectTo: '',
+    component: BaseComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
