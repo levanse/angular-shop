@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "MacBook",
+      "price": 900,
+      "image": "assets/images/macbook.jpeg",
+      "configure": {
+        "chip": "M1",
+        "ssd": "256 GB",
+        "memory": "8 GB",
+        "display": "Retina"
+      }
+    },
+    {
+      "id": 2,
+      "title": "MacBook Pro",
+      "price": 1300,
+      "image": "assets/images/macbook.jpeg",
+      "configure": {
+        "chip": "M1",
+        "ssd": "256 GB",
+        "memory": "16 GB",
+        "display": "Retina"
+      }
+    },
+    {
+      "id": 3,
+      "title": "MacBook Pro (Intel)",
+      "price": 1000,
+      "image": "assets/images/macbook.jpeg",
+      "configure": {
+        "chip": "Intel",
+        "ssd": "256 GB",
+        "memory": "16 GB",
+        "display": "Retina"
+      }
+    }
+  ]
+}
