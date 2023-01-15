@@ -12,14 +12,14 @@ export class ProductsComponent implements OnInit {
   products!: IProducts[];
   productsSubscription!: Subscription;
 
-  constructor(private ProductService: ProductsService) {}
+  constructor(private productService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productsSubscription = this.ProductService.getProducts().subscribe(
-      (data) => {
+    this.productsSubscription = this.productService
+      .getProducts()
+      .subscribe((data) => {
         this.products = data;
-      }
-    );
+      });
   }
 
   ngOnDestroy() {
