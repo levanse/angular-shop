@@ -8,7 +8,14 @@
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-flat-button color="primary">В корзину</button>
-      <button class="button" mat-flat-button color="primary">Подробнее</button>
+      <button
+        [routerLink]="['/product', product.id]"
+        class="button"
+        mat-flat-button
+        color="primary"
+      >
+        Подробнее
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
