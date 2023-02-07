@@ -6,6 +6,10 @@
   margin: 0 auto;
 }
 
+.example-spacer {
+  flex: 1 1 auto;
+}
+
 .mat-card {
   background-color: #fff;
   color: #000;
@@ -14,8 +18,4 @@
 
 .image {
   max-width: 300px;
-}
-
-.button {
-  margin-right: 5px;
 }
