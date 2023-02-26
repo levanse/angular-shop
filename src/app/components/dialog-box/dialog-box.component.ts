@@ -26,7 +26,7 @@ export class DialogBoxComponent implements OnInit {
   ngOnInit(): void {}
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   onSubmit() {
