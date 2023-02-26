@@ -5,6 +5,8 @@ export interface IProducts {
   image?: string;
   year: string;
   configure: IProductsConfig;
+
+  quantity: number;
 }
 
 export interface IProductsConfig {
