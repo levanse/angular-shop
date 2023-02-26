@@ -13,6 +13,7 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 export class ProductsComponent implements OnInit {
   products!: IProducts[];
   productsSubscription!: Subscription;
+
   canEdit: boolean = false;
   canView: boolean = false;
 
@@ -37,16 +38,21 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  openDialog(): void {
+  openDialog(product?: IProducts): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '500px';
     dialogConfig.disableClose = true;
+    dialogConfig.data = product;
 
     const dialogRef = this.dialog.open(DialogBoxComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.postData(data);
+        if (data && data.id) {
+          this.updateProduct(data);
+        } else {
+          this.postData(data);
+        }
       }
     });
   }
@@ -55,6 +61,14 @@ export class ProductsComponent implements OnInit {
     this.productService
       .postProduct(data)
       .subscribe((data) => this.products.push(data));
+  }
+
+  updateProduct(product: IProducts) {
+    this.productService.updateProduct(product).subscribe((data) => {
+      this.products = this.products.map((product) => {
+        return product.id === data.id ? data : product;
+      });
+    });
   }
 
   deleteItem(id: number) {

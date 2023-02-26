@@ -8,20 +8,27 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./dialog-box.component.scss'],
 })
 export class DialogBoxComponent implements OnInit {
+  isNew: boolean = true;
+
   myForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    price: new FormControl(''),
-    year: new FormControl(''),
-    chip: new FormControl(''),
-    ssd: new FormControl(''),
-    memory: new FormControl(''),
-    display: new FormControl(''),
+    id: new FormControl(this.data?.id ?? null),
+    title: new FormControl(this.data?.title ?? ''),
+    price: new FormControl(this.data?.price ?? ''),
+    year: new FormControl(this.data?.year ?? ''),
+    chip: new FormControl(this.data?.configure.chip ?? ''),
+    ssd: new FormControl(this.data?.configure.ssd ?? ''),
+    memory: new FormControl(this.data?.configure.memory ?? ''),
+    display: new FormControl(this.data?.configure.display ?? ''),
   });
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    if (this.data) {
+      this.isNew = false;
+    }
+  }
 
   ngOnInit(): void {}
 
@@ -31,6 +38,7 @@ export class DialogBoxComponent implements OnInit {
 
   onSubmit() {
     this.data = {
+      id: this.myForm.value.id,
       title: this.myForm.value.title,
       price: this.myForm.value.price,
       image: 'assets/images/macbook.jpeg',
