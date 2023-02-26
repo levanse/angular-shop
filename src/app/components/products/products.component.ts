@@ -14,8 +14,10 @@ export class ProductsComponent implements OnInit {
   products!: IProducts[];
   productsSubscription!: Subscription;
 
+  basket!: IProducts[];
+  basketSubscription!: Subscription;
+
   canEdit: boolean = false;
-  canView: boolean = false;
 
   constructor(
     private productService: ProductsService,
@@ -30,10 +32,20 @@ export class ProductsComponent implements OnInit {
       .subscribe((data) => {
         this.products = data;
       });
+
+    this.basketSubscription = this.productService
+      .getProductFromBasket()
+      .subscribe((data) => {
+        this.basket = data;
+      });
   }
 
   ngOnDestroy() {
     if (this.productsSubscription) {
+      this.productsSubscription.unsubscribe();
+    }
+
+    if (this.basketSubscription) {
       this.productsSubscription.unsubscribe();
     }
   }
@@ -55,6 +67,33 @@ export class ProductsComponent implements OnInit {
         }
       }
     });
+  }
+
+  addToBasket(product: IProducts) {
+    product.quantity = 1;
+    let findItem;
+
+    if (this.basket.length > 0) {
+      findItem = this.basket.find((item) => item.id === product.id);
+      if (findItem) {
+        this.updateToBasket(findItem);
+      } else {
+        this.postToBasket(product);
+      }
+    } else {
+      this.postToBasket(product);
+    }
+  }
+
+  postToBasket(product: IProducts) {
+    this.productService.postProductToBasket(product).subscribe((data) => {
+      this.basket.push(data);
+    });
+  }
+
+  updateToBasket(product: IProducts) {
+    product.quantity += 1;
+    this.productService.updateProductToBasket(product).subscribe((data) => {});
   }
 
   postData(data: IProducts) {
