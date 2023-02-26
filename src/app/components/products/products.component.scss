@@ -4,6 +4,11 @@
   align-items: center;
   justify-content: flex-start;
   margin: 0 auto;
+  padding-bottom: 90px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }
 
 .mat-card {
@@ -14,8 +19,4 @@
 
 .image {
   max-width: 300px;
-}
-
-.button {
-  margin-right: 5px;
 }

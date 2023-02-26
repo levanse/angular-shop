@@ -17,4 +17,12 @@ export class ProductsService {
   getProduct(id: number) {
     return this.http.get<IProducts>(`${this.url}/${id}`);
   }
+
+  postProduct(product: IProducts) {
+    return this.http.post<IProducts>(this.url, product);
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete<IProducts>(`${this.url}/${id}`);
+  }
 }
